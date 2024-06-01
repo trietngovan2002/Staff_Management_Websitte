@@ -1,0 +1,67 @@
+﻿@model QuanLyNhanSu.Models.KhenThuongViewModel
+
+@{
+    ViewBag.Title = "Khen thưởng/Kỷ luật";
+}
+<style>
+    h2{
+        width :100%;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+</style>
+
+<h2 style="align-content: center;">Khen Thưởng/Kỷ Luật Nhân Viên</h2>
+
+<canvas id="khenThuongKyLuatChart" width="400" height="200"></canvas>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var ctx = document.getElementById('khenThuongKyLuatChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Encode(Model.Thang)),
+                    datasets: [{
+                        label: 'Khen Thưởng',
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        data: @Html.Raw(Json.Encode(Model.SoLuongKhenThuong)),
+                    }, {
+                        label: 'Kỷ Luật',
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        data: @Html.Raw(Json.Encode(Model.SoLuongKyLuat)),
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                callback: function (value, index, values) {
+                                    var parts = value.split("/");
+                                    return parts[0] + "/" + parts[1]; // Hiển thị cả phần tháng và phần năm
+                                }
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+

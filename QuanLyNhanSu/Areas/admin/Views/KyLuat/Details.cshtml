@@ -1,0 +1,58 @@
+﻿@model QuanLyNhanSu.Models.KyLuat
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>KyLuat</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NhanVien.MatKhau)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NhanVien.MatKhau)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LyDo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LyDo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ThangKiLuat)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ThangKiLuat)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TienKyLuat)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TienKyLuat)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaNhanVien }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
